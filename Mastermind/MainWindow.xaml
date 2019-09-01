@@ -74,6 +74,13 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
         
+         <!--
+        
+        Create a high score page. Maybe use Enum in Properties??? Can look into it.
+        
+        
+-->        
+        
     </Window.Resources>
 
     <Grid>
@@ -106,10 +113,10 @@
         <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource WindowPanel}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Menu" Margin="5" HorizontalAlignment="Center" FontWeight="Bold"/>
+                <Button Style="{StaticResource MenuButton}" Content="New Game" Click="NewGameButtonClick"/>
                 
                 <!--NOTHING HERE WORKS YET-->
-                
-                <Button Style="{StaticResource MenuButton}" Content="New Game" Click="NewGameButtonClick"/>
+                <TextBlock Text="The buttons below are not working yet." Margin="5" HorizontalAlignment="Center" FontWeight="Bold" TextWrapping="Wrap"/>
                 <Button Style="{StaticResource MenuButton}" Content="High Scores"/>
                 <Button Style="{StaticResource MenuButton}" Content="Quit"/>
             </StackPanel>

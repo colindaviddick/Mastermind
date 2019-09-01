@@ -23,43 +23,33 @@ namespace Mastermind
 
         Random r = new Random();
         int attempts = 0;
-        int b1col = 1;
-        int b2col = 1;
-        int b3col = 1;
-        int b4col = 1;
+
+        int[] buttonColours = new int[4];
+
+        //int buttonColours[0] = 1;
+        //int buttonColours[1] = 1;
+        //int buttonColours[2] = 1;
+        //int buttonColours[3] = 1;
 
         int b1guesscolour = 1;
         int b2guesscolour = 2;
         int b3guesscolour = 3;
         int b4guesscolour = 4;
-
-        private Button[] buttons = new Button[4];
-        private Button[] guessbuttons = new Button[4];
-
+        
         public MainWindow()
         {
-            buttons[0] = b1;
-            buttons[1] = b2;
-            buttons[2] = b3;
-            buttons[3] = b4;
-
-            guessbuttons[0] = b1;
-            guessbuttons[1] = b2;
-            guessbuttons[2] = b3;
-            guessbuttons[3] = b4;
-
             InitializeComponent();
         }
 
         private void B1_Click(object sender, RoutedEventArgs e)
         {
-            if (b1col < 4)
+            if (buttonColours[0] < 4)
             {
-                b1col++;
+                buttonColours[0]++;
             }
-            else b1col = 1;
+            else buttonColours[0] = 1;
 
-            switch (b1col)
+            switch (buttonColours[0])
             {
                 case 1:
                     b1.Background = Brushes.Red;
@@ -80,13 +70,13 @@ namespace Mastermind
 
         private void B2_Click(object sender, RoutedEventArgs e)
         {
-            if (b2col < 4)
+            if (buttonColours[1] < 4)
             {
-                b2col++;
+                buttonColours[1]++;
             }
-            else b2col = 1;
+            else buttonColours[1] = 1;
 
-            switch (b2col)
+            switch (buttonColours[1])
             {
                 case 1:
                     b2.Background = Brushes.Red;
@@ -107,13 +97,13 @@ namespace Mastermind
 
         private void B3_Click(object sender, RoutedEventArgs e)
         {
-            if (b3col < 4)
+            if (buttonColours[2] < 4)
             {
-                b3col++;
+                buttonColours[2]++;
             }
-            else b3col = 1;
+            else buttonColours[2] = 1;
 
-            switch (b3col)
+            switch (buttonColours[2])
             {
                 case 1:
                     b3.Background = Brushes.Red;
@@ -134,13 +124,13 @@ namespace Mastermind
 
         private void B4_Click(object sender, RoutedEventArgs e)
         {
-            if (b4col < 4)
+            if (buttonColours[3] < 4)
             {
-                b4col++;
+                buttonColours[3]++;
             }
-            else b4col = 1;
+            else buttonColours[3] = 1;
 
-            switch (b4col)
+            switch (buttonColours[3])
             {
                 case 1:
                     b4.Background = Brushes.Red;
@@ -164,7 +154,7 @@ namespace Mastermind
             attempts++;
             Attempts.Text = (attempts + " attempts");
 
-            if ((b1col == b1guesscolour) && (b2col == b2guesscolour) && (b3col == b3guesscolour) && (b4col == b4guesscolour))
+            if ((buttonColours[0] == b1guesscolour) && (buttonColours[1] == b2guesscolour) && (buttonColours[2] == b3guesscolour) && (buttonColours[3] == b4guesscolour))
             {
                 AnswerPanel.Visibility = Visibility.Visible;
                 MessageBox.Show("You have won!");
@@ -178,7 +168,7 @@ namespace Mastermind
                 int hintNo = 0;
                 int posHintNo = 0;
 
-                if (b1col == 1 || b2col == 1 || b3col == 1 || b4col == 1)
+                if (buttonColours[0] == 1 || buttonColours[1] == 1 || buttonColours[2] == 1 || buttonColours[3] == 1)
                 {
                     if(b1guesscolour == 1)
                     {
@@ -198,7 +188,7 @@ namespace Mastermind
                     }
                 }
 
-                if (b1col == 2 || b2col == 2 || b3col == 2 || b4col == 2)
+                if (buttonColours[0] == 2 || buttonColours[1] == 2 || buttonColours[2] == 2 || buttonColours[3] == 2)
                 {
                     if (b1guesscolour == 2)
                     {
@@ -218,7 +208,7 @@ namespace Mastermind
                     }
 
                 }
-                if (b1col == 3 || b2col == 3 || b3col == 3 || b4col == 3)
+                if (buttonColours[0] == 3 || buttonColours[1] == 3 || buttonColours[2] == 3 || buttonColours[3] == 3)
                 {
                     if (b1guesscolour == 3)
                     {
@@ -237,7 +227,7 @@ namespace Mastermind
                         hintNo++;
                     }
                 }
-                if (b1col == 4 || b2col == 4 || b3col == 4 || b4col == 4)
+                if (buttonColours[0] == 4 || buttonColours[1] == 4 || buttonColours[2] == 4 || buttonColours[3] == 4)
                 {
                     if (b1guesscolour == 4)
                     {
@@ -257,19 +247,19 @@ namespace Mastermind
                     }
                 }
 
-                if(b1col == b1guesscolour)
+                if(buttonColours[0] == b1guesscolour)
                 {
                     posHintNo++;
                 }
-                if (b2col == b2guesscolour)
+                if (buttonColours[1] == b2guesscolour)
                 {
                     posHintNo++;
                 }
-                if (b3col == b3guesscolour)
+                if (buttonColours[2] == b3guesscolour)
                 {
                     posHintNo++;
                 }
-                if (b4col == b4guesscolour)
+                if (buttonColours[3] == b4guesscolour)
                 {
                     posHintNo++;
                 }
@@ -292,13 +282,18 @@ namespace Mastermind
         private void NewGameButtonClick(object sender, RoutedEventArgs e)
         {
             attempts = 0;
-            //AnswerPanel.Visibility = Visibility.Collapsed;
+            AnswerPanel.Visibility = Visibility.Collapsed;
             StartPanel.Visibility = Visibility.Collapsed;
 
             b1.IsEnabled = true;
             b2.IsEnabled = true;
             b3.IsEnabled = true;
             b4.IsEnabled = true;
+
+            buttonColours[0] = 1;
+            buttonColours[1] = 1;
+            buttonColours[2] = 1;
+            buttonColours[3] = 1;
 
             b1guesscolour = r.Next(1, 5);
             b2guesscolour = r.Next(1, 5);
@@ -380,5 +375,81 @@ namespace Mastermind
 
             }
         }
+
+
+        //private void HighScoreSaveButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (HighScoreName.Text == "" || HighScoreName.Text == null)
+        //    {
+        //        NoNameWarning.Visibility = Visibility.Visible;
+        //    }
+
+        //    else
+        //    {
+        //        HighScoreSaveRoutine();
+        //    }
+        //}
+
+        //private void HighScoreSaveRoutine()
+        //{
+        //    if (clicks < Properties.Settings.Default.Score1)
+        //    {
+        //        Properties.Settings.Default.Name5 = Properties.Settings.Default.Name4;
+        //        Properties.Settings.Default.Score5 = Properties.Settings.Default.Score4;
+        //        Properties.Settings.Default.Name4 = Properties.Settings.Default.Name3;
+        //        Properties.Settings.Default.Score4 = Properties.Settings.Default.Score3;
+        //        Properties.Settings.Default.Name3 = Properties.Settings.Default.Name2;
+        //        Properties.Settings.Default.Score3 = Properties.Settings.Default.Score2;
+        //        Properties.Settings.Default.Name2 = Properties.Settings.Default.Name1;
+        //        Properties.Settings.Default.Score2 = Properties.Settings.Default.Score1;
+        //        Properties.Settings.Default.Name1 = HighScoreName.Text;
+        //        Properties.Settings.Default.Score1 = clicks;
+        //        Properties.Settings.Default.Save();
+        //    }
+        //    else if (clicks < Properties.Settings.Default.Score2)
+        //    {
+        //        Properties.Settings.Default.Name5 = Properties.Settings.Default.Name4;
+        //        Properties.Settings.Default.Score5 = Properties.Settings.Default.Score4;
+        //        Properties.Settings.Default.Name4 = Properties.Settings.Default.Name3;
+        //        Properties.Settings.Default.Score4 = Properties.Settings.Default.Score3;
+        //        Properties.Settings.Default.Name3 = Properties.Settings.Default.Name2;
+        //        Properties.Settings.Default.Score3 = Properties.Settings.Default.Score2;
+        //        Properties.Settings.Default.Name2 = HighScoreName.Text;
+        //        Properties.Settings.Default.Score2 = clicks;
+        //        Properties.Settings.Default.Save();
+        //    }
+        //    else if (clicks < Properties.Settings.Default.Score3)
+        //    {
+        //        Properties.Settings.Default.Name5 = Properties.Settings.Default.Name4;
+        //        Properties.Settings.Default.Score5 = Properties.Settings.Default.Score4;
+        //        Properties.Settings.Default.Name4 = Properties.Settings.Default.Name3;
+        //        Properties.Settings.Default.Score4 = Properties.Settings.Default.Score3;
+        //        Properties.Settings.Default.Name3 = HighScoreName.Text;
+        //        Properties.Settings.Default.Score3 = clicks;
+        //        Properties.Settings.Default.Save();
+        //    }
+        //    else if (clicks < Properties.Settings.Default.Score4)
+        //    {
+        //        Properties.Settings.Default.Name5 = Properties.Settings.Default.Name4;
+        //        Properties.Settings.Default.Score5 = Properties.Settings.Default.Score4;
+        //        Properties.Settings.Default.Name4 = HighScoreName.Text;
+        //        Properties.Settings.Default.Score4 = clicks;
+        //        Properties.Settings.Default.Save();
+        //    }
+        //    else
+        //    {
+        //        Properties.Settings.Default.Name5 = HighScoreName.Text;
+        //        Properties.Settings.Default.Score5 = clicks;
+        //        Properties.Settings.Default.Save();
+        //    }
+
+        //    UpdateClicks();
+        //    Properties.Settings.Default.Save();
+        //    NoNameWarning.Visibility = Visibility.Hidden;
+        //    HighScorePanel.Visibility = Visibility.Collapsed;
+        //}
+
+
     }
+
 }
